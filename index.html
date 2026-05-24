@@ -1,12 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bé Bơ xinh nhất trái đất</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bé Bơ xinh nhất trái đất 💖</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffd6e7, #ffe8f3, #e9d5ff);
+            overflow: hidden;
+            position: relative;
+        }
+    
+        /* background blur */
+        .blur1,
+        .blur2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: .5;
+        }
+    
+        .blur1 {
+            width: 300px;
+            height: 300px;
+            background: #ff4fa3;
+            top: -100px;
+            left: -100px;
+        }
+    
+        .blur2 {
+            width: 350px;
+            height: 350px;
+            background: #9b5cff;
+            bottom: -120px;
+            right: -120px;
+        }
+    
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            min-height: 600px;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 35px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+    
+        .left {
+            padding: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    
+        .tag {
+            color: #ff4fa3;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+    
+        h1 {
+            font-size: 65px;
+            line-height: 1.1;
+            color: #333;
+        }
+    
+        h1 span {
+            color: #ff4fa3;
+        }
+    
+        .desc {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+        }
+    
+        .buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+    
+        button {
+            padding: 16px 28px;
+            border: none;
+            border-radius: 18px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: .3s;
+            font-weight: 600;
+        }
+    
+        .pink-btn {
+            background: #ff4fa3;
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 79, 163, .3);
+        }
+    
+        .pink-btn:hover {
+            transform: translateY(-5px);
+            background: #ff2f92;
+        }
+    
+        .white-btn {
+            background: white;
+            color: #ff4fa3;
+            border: 1px solid #ffd2e8;
+        }
+    
+        .white-btn:hover {
+            transform: translateY(-5px);
+            background: #fff3f9;
+        }
+    
+        .login-box {
+            margin-top: 40px;
+            background: #fff5fa;
+            border: 1px solid #ffd8ea;
+            padding: 20px;
+            border-radius: 20px;
+            color: #555;
+            font-size: 16px;
+        }
+    
+        .login-box strong {
+            color: #ff4fa3;
+        }
+    
+        .right {
+            background: linear-gradient(135deg, #ff5db1, #ff7ac3, #9b5cff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .right::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -150px;
+        }
+    
+        .content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            padding: 30px;
+        }
+    
+        .heart {
+            font-size: 110px;
+            animation: float 2s infinite ease-in-out;
+        }
+    
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+    
+            50% {
+                transform: translateY(-15px);
+            }
+    
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    
+        .content h2 {
+            font-size: 42px;
+            margin-top: 20px;
+        }
+    
+        .content p {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .9);
+        }
+    
+        .emoji {
+            margin-top: 30px;
+            font-size: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    
+        @media(max-width:900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+    
+            .left {
+                padding: 40px;
+            }
+    
+            h1 {
+                font-size: 48px;
+            }
+    
+            .right {
+                min-height: 400px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div>Bé Bơ xinh nhất trái đất</div>
-    <div>Sign in: Anh Cún</div>
+<div class="blur1"></div>
+<div class="blur2"></div>
+
+<div class="container">
+
+    <!-- LEFT -->
+    <div class="left">
+        <div class="tag">BÉ BƠ 💖</div>
+
+        <h1>
+            Bé Bơ <br>
+            <span>xinh nhất trái đất ✨</span>
+        </h1>
+
+        <div class="desc">
+            Mỗi ngày có thể rất bình thường...
+            <br><br>
+            nhưng chỉ cần Bé Bơ xuất hiện là cả thế giới của Anh Cún trở nên đáng yêu hơn rất nhiều 💕
+        </div>
+
+        <div class="buttons">
+            <button class="pink-btn">Ôm Bé Bơ 🤍</button>
+            <button class="white-btn">Yêu nhiều hơn 💌</button>
+        </div>
+
+        <div class="login-box">
+            <strong>Sign in:</strong> Anh Cún 🐶
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <div class="content">
+
+            <div class="heart">💖</div>
+
+            <h2>Princess Bé Bơ</h2>
+
+            <p>
+                Người dễ thương nhất hệ mặt trời,
+                <br>
+                đáng yêu hơn cả trà sữa và ngủ nướng 🌸
+            </p>
+
+            <div class="emoji">
+                <span>🌷</span>
+                <span>🐰</span>
+                <span>✨</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 </body>
+
 </html>
