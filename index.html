@@ -66,12 +66,14 @@
             grid-template-columns: 1fr 1fr;
             background: rgba(255, 255, 255, 0.35);
             border: 1px solid rgba(255, 255, 255, .4);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(28px);
             border-radius: 35px;
             overflow: hidden;
             position: relative;
             z-index: 10;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+            box-shadow:
+                0 0 80px rgba(59, 130, 246, .25),
+                0 30px 80px rgba(0, 0, 0, .15);
         }
 
         /* left */
@@ -209,8 +211,28 @@
 
         .heart {
             font-size: 120px;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2));
+
+            animation:
+                float 3s ease infinite,
+                glow 2s ease infinite;
+
+            filter:
+                drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 60px #60a5fa);
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                filter:
+                    drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 60px #60a5fa);
+            }
+
+            50% {
+                filter:
+                    drop-shadow(0 0 40px #7dd3fc) drop-shadow(0 0 120px #3b82f6);
+            }
+
         }
 
         @keyframes float {
@@ -525,11 +547,88 @@
             background: #0ea5e9;
             color: white;
         }
+
+        /* Sparkles */
+
+        .sparkles {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkles::before,
+        .sparkles::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+
+            background-image:
+                radial-gradient(circle, #ffffff 1px, transparent 1px);
+
+            background-size: 50px 50px;
+
+            opacity: .35;
+
+            animation:
+                sparkleMove 25s linear infinite;
+        }
+
+        .sparkles::after {
+            animation-duration: 40s;
+            opacity: .15;
+        }
+
+        @keyframes sparkleMove {
+            from {
+                transform:
+                    translateY(0) rotate(0deg);
+            }
+
+            to {
+                transform:
+                    translateY(-200px) rotate(8deg);
+            }
+        }
+        .choice{
+position:relative;
+overflow:hidden;
+}
+
+.choice::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:100%;
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.7),
+transparent
+);
+
+transition:1s;
+}
+
+.choice:hover::before{
+left:130%;
+}
     </style>
 </head>
 
 <body>
-
+    <div class="sparkles"></div>
     <div class="blur1"></div>
     <div class="blur2"></div>
 
@@ -573,25 +672,24 @@
 
                     <button class="choice">✨ Yêu Thêm 100%</button>
                     <button class="choice">☕ Uống Trà Sữa Cùng Bé Bơ</button>
-                    
+
                     <button class="choice">🎬 Xem Phim Cùng Bé Bơ</button>
-                    
+
                     <button class="choice">🎁 Tặng Quà Bí Mật</button>
-                    
+
                     <button class="choice">🌙 Ngắm Trăng Cùng Nhau</button>
-                    
+
                     <button class="choice">🛍️ Dắt Bé Bơ Đi Shopping</button>
-                    
+
                     <button class="choice">🐱 Vuốt Mèo Cùng Bé Bơ</button>
-                    
-                    
-                    
+
+
                     <button class="choice">🎵 Hát Cho Bé Bơ Nghe</button>
-                    
+
                     <button class="choice">🤗 Nắm Tay Bé Bơ</button>
-                    
+
                     <button class="choice">🌈 Tạo Kỷ Niệm Mới</button>
-                    
+
                     <button class="choice">💍 Cưới Bé Bơ</button>
                 </div>
 
