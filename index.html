@@ -1,937 +1,870 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bé Bơ xinh nhất trái đất 💙</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #d7f3ff, #c2ebff, #9fdcff);
+        overflow-x: hidden;
+        position: relative;
+        padding: 20px;
+      }
+
+      /* background circles */
+
+      .blur1,
+      .blur2 {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.5;
+      }
+
+      .blur1 {
+        width: 350px;
+        height: 350px;
+        background: #38bdf8;
+        top: -120px;
+        left: -120px;
+      }
+
+      .blur2 {
+        width: 400px;
+        height: 400px;
+        background: #2563eb;
+        bottom: -150px;
+        right: -150px;
+      }
+
+      /* container */
+
+      .container {
+        width: 90%;
+        max-width: 1150px;
+        min-height: 650px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: rgba(255, 255, 255, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(28px);
+        border-radius: 35px;
+        overflow: hidden;
+        position: relative;
+        z-index: 10;
+        box-shadow:
+          0 0 80px rgba(59, 130, 246, 0.25),
+          0 30px 80px rgba(0, 0, 0, 0.15);
+      }
+
+      /* left */
+
+      .left {
+        padding: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .tag {
+        color: #0ea5e9;
+        font-weight: 700;
+        letter-spacing: 4px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 6vw, 68px);
+        line-height: 1.1;
+        color: #1e293b;
+        font-weight: 900;
+      }
+
+      h1 span {
+        color: #0284c7;
+      }
+
+      .desc {
+        margin-top: 30px;
+        color: #475569;
+        line-height: 1.9;
+        font-size: 18px;
+      }
+
+      /* buttons */
+
+      .buttons {
+        margin-top: 40px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: none;
+        padding: 17px 30px;
+        border-radius: 18px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 600;
+      }
+
+      .blue-btn {
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: white;
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+      }
+
+      .blue-btn:hover {
+        transform: translateY(-5px) scale(1.03);
+      }
+
+      .white-btn {
+        background: white;
+        color: #0284c7;
+        border: 1px solid #bae6fd;
+      }
+
+      .white-btn:hover {
+        transform: translateY(-5px);
+        background: #f0f9ff;
+      }
+
+      /* sign in */
+
+      .login-box {
+        margin-top: 45px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.65);
+        border-radius: 20px;
+        border: 1px solid #dbeafe;
+        color: #334155;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .login-box strong {
+        color: #0284c7;
+      }
+
+      /* right */
+
+      .right {
+        background: linear-gradient(135deg, #38bdf8, #0ea5e9, #2563eb);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .right::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        top: -220px;
+        right: -180px;
+      }
+
+      .right::after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        bottom: -120px;
+        left: -100px;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        padding: 30px;
+      }
+
+      .heart {
+        font-size: 120px;
+
+        animation:
+          float 3s ease infinite,
+          glow 2s ease infinite;
+
+        filter: drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 60px #60a5fa);
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 60px #60a5fa);
         }
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #d7f3ff, #c2ebff, #9fdcff);
-            overflow-x: hidden;
-            position: relative;
-            padding: 20px;
+        50% {
+          filter: drop-shadow(0 0 40px #7dd3fc) drop-shadow(0 0 120px #3b82f6);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
         }
 
-        /* background circles */
-
-        .blur1,
-        .blur2 {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: .5;
+        50% {
+          transform: translateY(-18px);
         }
 
-        .blur1 {
-            width: 350px;
-            height: 350px;
-            background: #38bdf8;
-            top: -120px;
-            left: -120px;
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .content h2 {
+        font-size: clamp(24px, 5vw, 46px);
+        margin-top: 20px;
+        font-weight: 800;
+      }
+
+      .content p {
+        margin-top: 22px;
+        font-size: 18px;
+        line-height: 1.9;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .emoji {
+        margin-top: 35px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        font-size: 40px;
+      }
+
+      .emoji span {
+        animation: wave 2s infinite;
+      }
+
+      .emoji span:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+
+      .emoji span:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: translateY(0);
         }
 
-        .blur2 {
-            width: 400px;
-            height: 400px;
-            background: #2563eb;
-            bottom: -150px;
-            right: -150px;
+        50% {
+          transform: translateY(-10px);
         }
 
-        /* container */
+        100% {
+          transform: translateY(0);
+        }
+      }
 
+      /* mobile */
+
+      /* Tablet */
+      @media screen and (max-width: 992px) {
         .container {
-            width: 90%;
-            max-width: 1150px;
-            min-height: 650px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: rgba(255, 255, 255, 0.35);
-            border: 1px solid rgba(255, 255, 255, .4);
-            backdrop-filter: blur(28px);
-            border-radius: 35px;
-            overflow: hidden;
-            position: relative;
-            z-index: 10;
-            box-shadow:
-                0 0 80px rgba(59, 130, 246, .25),
-                0 30px 80px rgba(0, 0, 0, .15);
+          width: 95%;
+          grid-template-columns: 1fr;
+          min-height: auto;
         }
-
-        /* left */
 
         .left {
-            padding: 70px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .tag {
-            color: #0ea5e9;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-size: 14px;
+          padding: 50px 35px;
+          text-align: center;
         }
 
         h1 {
-            font-size: clamp(32px, 6vw, 68px);
-            line-height: 1.1;
-            color: #1e293b;
-            font-weight: 900;
+          font-size: 52px;
         }
 
-        h1 span {
-            color: #0284c7;
+        .buttons {
+          justify-content: center;
+        }
+
+        .right {
+          min-height: 450px;
+        }
+      }
+
+      /* Mobile */
+      @media screen and (max-width: 768px) {
+        body {
+          padding: 20px 0;
+          overflow-x: hidden;
+        }
+
+        .container {
+          width: 95%;
+          border-radius: 25px;
+        }
+
+        .left {
+          padding: 35px 25px;
+        }
+
+        h1 {
+          font-size: 40px;
         }
 
         .desc {
-            margin-top: 30px;
-            color: #475569;
-            line-height: 1.9;
-            font-size: 18px;
+          font-size: 16px;
+          line-height: 1.7;
         }
-
-        /* buttons */
 
         .buttons {
-            margin-top: 40px;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+          flex-direction: column;
+          width: 100%;
         }
 
-        button {
-            border: none;
-            padding: 17px 30px;
-            border-radius: 18px;
-            font-size: 17px;
-            cursor: pointer;
-            transition: .3s;
-            font-weight: 600;
+        .buttons button {
+          width: 100%;
         }
-
-        .blue-btn {
-            background: linear-gradient(135deg, #0ea5e9, #2563eb);
-            color: white;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, .35);
-        }
-
-        .blue-btn:hover {
-            transform: translateY(-5px) scale(1.03);
-        }
-
-        .white-btn {
-            background: white;
-            color: #0284c7;
-            border: 1px solid #bae6fd;
-        }
-
-        .white-btn:hover {
-            transform: translateY(-5px);
-            background: #f0f9ff;
-        }
-
-        /* sign in */
 
         .login-box {
-            margin-top: 45px;
-            padding: 22px;
-            background: rgba(255, 255, 255, .65);
-            border-radius: 20px;
-            border: 1px solid #dbeafe;
-            color: #334155;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, .05);
+          margin-top: 25px;
+          font-size: 15px;
         }
-
-        .login-box strong {
-            color: #0284c7;
-        }
-
-        /* right */
 
         .right {
-            background: linear-gradient(135deg, #38bdf8, #0ea5e9, #2563eb);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .right::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .12);
-            top: -220px;
-            right: -180px;
-        }
-
-        .right::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .08);
-            bottom: -120px;
-            left: -100px;
+          min-height: 380px;
         }
 
         .content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            padding: 30px;
-        }
-
-        .heart {
-            font-size: 120px;
-
-            animation:
-                float 3s ease infinite,
-                glow 2s ease infinite;
-
-            filter:
-                drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 60px #60a5fa);
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                filter:
-                    drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 60px #60a5fa);
-            }
-
-            50% {
-                filter:
-                    drop-shadow(0 0 40px #7dd3fc) drop-shadow(0 0 120px #3b82f6);
-            }
-
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-18px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+          padding: 20px;
         }
 
         .content h2 {
-            font-size: clamp(24px, 5vw, 46px);
-            margin-top: 20px;
-            font-weight: 800;
+          font-size: 30px;
         }
 
         .content p {
-            margin-top: 22px;
-            font-size: 18px;
-            line-height: 1.9;
-            color: rgba(255, 255, 255, .92);
+          font-size: 15px;
+          line-height: 1.7;
+        }
+
+        .heart {
+          font-size: 80px;
         }
 
         .emoji {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 40px;
+          gap: 15px;
+          font-size: 30px;
+        }
+      }
+
+      /* Small Mobile */
+      @media screen and (max-width: 480px) {
+        .left {
+          padding: 25px 20px;
         }
 
-        .emoji span {
-            animation: wave 2s infinite;
+        .tag {
+          font-size: 12px;
+          letter-spacing: 2px;
         }
 
-        .emoji span:nth-child(2) {
-            animation-delay: .3s;
+        h1 {
+          font-size: 32px;
         }
 
-        .emoji span:nth-child(3) {
-            animation-delay: .6s;
+        .desc {
+          font-size: 14px;
         }
 
-        @keyframes wave {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
+        .content h2 {
+          font-size: 24px;
         }
 
-        /* mobile */
-
-        /* Tablet */
-        @media screen and (max-width: 992px) {
-
-            .container {
-                width: 95%;
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .left {
-                padding: 50px 35px;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 52px;
-            }
-
-            .buttons {
-                justify-content: center;
-            }
-
-            .right {
-                min-height: 450px;
-            }
+        .content p {
+          font-size: 14px;
         }
 
-        /* Mobile */
-        @media screen and (max-width: 768px) {
-
-            body {
-                padding: 20px 0;
-                overflow-x: hidden;
-            }
-
-            .container {
-                width: 95%;
-                border-radius: 25px;
-            }
-
-            .left {
-                padding: 35px 25px;
-            }
-
-            h1 {
-                font-size: 40px;
-            }
-
-            .desc {
-                font-size: 16px;
-                line-height: 1.7;
-            }
-
-            .buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .buttons button {
-                width: 100%;
-            }
-
-            .login-box {
-                margin-top: 25px;
-                font-size: 15px;
-            }
-
-            .right {
-                min-height: 380px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .content h2 {
-                font-size: 30px;
-            }
-
-            .content p {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            .heart {
-                font-size: 80px;
-            }
-
-            .emoji {
-                gap: 15px;
-                font-size: 30px;
-            }
+        .heart {
+          font-size: 65px;
         }
 
-        /* Small Mobile */
-        @media screen and (max-width: 480px) {
-
-            .left {
-                padding: 25px 20px;
-            }
-
-            .tag {
-                font-size: 12px;
-                letter-spacing: 2px;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            .desc {
-                font-size: 14px;
-            }
-
-            .content h2 {
-                font-size: 24px;
-            }
-
-            .content p {
-                font-size: 14px;
-            }
-
-            .heart {
-                font-size: 65px;
-            }
-
-            button {
-                padding: 14px 20px;
-                font-size: 15px;
-            }
-
-            .emoji {
-                font-size: 24px;
-            }
+        button {
+          padding: 14px 20px;
+          font-size: 15px;
         }
 
-        .choice-box {
-            margin-top: 40px;
+        .emoji {
+          font-size: 24px;
+        }
+      }
+
+      .choice-box {
+        margin-top: 40px;
+      }
+
+      .choice-box h3 {
+        color: #0284c7;
+        margin-bottom: 20px;
+      }
+
+      .choices {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .choice {
+        border: none;
+        padding: 18px;
+        border-radius: 20px;
+        background: white;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 16px;
+        transition: 0.35s;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .choice:hover {
+        transform: translateY(-8px) scale(1.05);
+        background: #dbeafe;
+      }
+
+      #result {
+        margin-top: 25px;
+        min-height: 60px;
+        background: white;
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        color: #2563eb;
+        font-weight: 700;
+        font-size: 18px;
+        opacity: 0;
+        transition: 0.4s;
+      }
+
+      #result.show {
+        opacity: 1;
+      }
+
+      #runBtn {
+        margin-top: 20px;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 20px;
+        background: #ef4444;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .heart-float {
+        position: fixed;
+        font-size: 30px;
+        pointer-events: none;
+        animation: heartUp 2s linear forwards;
+        z-index: 9999;
+      }
+
+      @keyframes heartUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
         }
 
-        .choice-box h3 {
-            color: #0284c7;
-            margin-bottom: 20px;
+        100% {
+          transform: translateY(-200px) scale(2);
+          opacity: 0;
+        }
+      }
+
+      .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        z-index: 99999;
+        transition: 0.3s;
+        text-align: center;
+        max-width: 300px;
+      }
+
+      .popup.show {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .popup h2 {
+        color: #0284c7;
+        margin-bottom: 10px;
+      }
+
+      .popup button {
+        margin-top: 15px;
+        background: #0ea5e9;
+        color: white;
+      }
+
+      /* Sparkles */
+
+      .sparkles {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .sparkles::before,
+      .sparkles::after {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+
+        background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+
+        background-size: 50px 50px;
+
+        opacity: 0.35;
+
+        animation: sparkleMove 25s linear infinite;
+      }
+
+      .sparkles::after {
+        animation-duration: 40s;
+        opacity: 0.15;
+      }
+
+      @keyframes sparkleMove {
+        from {
+          transform: translateY(0) rotate(0deg);
         }
 
-        .choices {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+        to {
+          transform: translateY(-200px) rotate(8deg);
         }
+      }
+      .choice {
+        position: relative;
+        overflow: hidden;
+      }
 
-        .choice {
-            border: none;
-            padding: 18px;
-            border-radius: 20px;
-            background: white;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-            transition: .35s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
-        }
+      .choice::before {
+        content: "";
 
-        .choice:hover {
-            transform: translateY(-8px) scale(1.05);
-            background: #dbeafe;
-        }
+        position: absolute;
 
-        #result {
-            margin-top: 25px;
-            min-height: 60px;
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            color: #2563eb;
-            font-weight: 700;
-            font-size: 18px;
-            opacity: 0;
-            transition: .4s;
-        }
+        top: 0;
+        left: -120%;
 
-        #result.show {
-            opacity: 1;
-        }
+        width: 100%;
+        height: 100%;
 
-        #runBtn {
-            margin-top: 20px;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 20px;
-            background: #ef4444;
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-            transition: .3s;
-        }
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.7),
+          transparent
+        );
 
-        .heart-float {
-            position: fixed;
-            font-size: 30px;
-            pointer-events: none;
-            animation: heartUp 2s linear forwards;
-            z-index: 9999;
-        }
+        transition: 1s;
+      }
 
-        @keyframes heartUp {
-
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-200px) scale(2);
-                opacity: 0;
-            }
-        }
-
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .2);
-            z-index: 99999;
-            transition: .3s;
-            text-align: center;
-            max-width: 300px;
-        }
-
-        .popup.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .popup h2 {
-            color: #0284c7;
-            margin-bottom: 10px;
-        }
-
-        .popup button {
-            margin-top: 15px;
-            background: #0ea5e9;
-            color: white;
-        }
-
-        /* Sparkles */
-
-        .sparkles {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .sparkles::before,
-        .sparkles::after {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-
-            background-image:
-                radial-gradient(circle, #ffffff 1px, transparent 1px);
-
-            background-size: 50px 50px;
-
-            opacity: .35;
-
-            animation:
-                sparkleMove 25s linear infinite;
-        }
-
-        .sparkles::after {
-            animation-duration: 40s;
-            opacity: .15;
-        }
-
-        @keyframes sparkleMove {
-            from {
-                transform:
-                    translateY(0) rotate(0deg);
-            }
-
-            to {
-                transform:
-                    translateY(-200px) rotate(8deg);
-            }
-        }
-        .choice{
-position:relative;
-overflow:hidden;
-}
-
-.choice::before{
-
-content:"";
-
-position:absolute;
-
-top:0;
-left:-120%;
-
-width:100%;
-height:100%;
-
-background:
-
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.7),
-transparent
-);
-
-transition:1s;
-}
-
-.choice:hover::before{
-left:130%;
-}
+      .choice:hover::before {
+        left: 130%;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="sparkles"></div>
     <div class="blur1"></div>
     <div class="blur2"></div>
 
     <div class="container">
+      <!-- LEFT -->
 
-        <!-- LEFT -->
+      <div class="left">
+        <div class="tag">BÉ BƠ 💙</div>
 
-        <div class="left">
-            <div class="tag">
-                BÉ BƠ 💙
-            </div>
+        <h1>
+          Bé Bơ <br />
+          <span>xinh nhất trái đất ✨</span>
+        </h1>
 
-            <h1>
-                Bé Bơ <br>
-                <span>xinh nhất trái đất ✨</span>
-            </h1>
+        <div class="desc">
+          Có rất nhiều người ngoài kia...
+          <br /><br />
+          nhưng đối với Anh Cún thì Bé Bơ luôn là người đặc biệt nhất 💕
+          <br /><br />
+          Chỉ cần Bé Bơ cười một chút thôi là cả ngày tự nhiên trở nên vui hơn
+          rất nhiều 🌤️
+        </div>
+        <iframe
+          data-testid="embed-iframe"
+          style="border-radius: 12px"
+          src="https://open.spotify.com/embed/track/0OYusiiiDYU33GJYsMzUc0?utm_source=generator&si=78467a83237245df"
+          width="100%"
+          height="352"
+          frameborder="0"
+          allowfullscreen=""
+          allow="
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            fullscreen;
+            picture-in-picture;
+          "
+          loading="lazy"
+        ></iframe>
+        <div class="choice-box">
+          <h3>💙 Hôm nay Anh Cún muốn làm gì với Bé Bơ?</h3>
 
-            <div class="desc">
-                Có rất nhiều người ngoài kia...
-                <br><br>
-                nhưng đối với Anh Cún thì Bé Bơ luôn là người đặc biệt nhất 💕
-                <br><br>
-                Chỉ cần Bé Bơ cười một chút thôi là cả ngày tự nhiên trở nên vui hơn rất nhiều 🌤️
-            </div>
+          <div class="choices">
+            <button class="choice">💖 Ôm Bé Bơ</button>
 
-            <div class="choice-box">
+            <button class="choice">🌸 Tặng Hoa</button>
 
-                <h3>💙 Hôm nay Anh Cún muốn làm gì với Bé Bơ?</h3>
+            <button class="choice">🍰 Mua Bánh</button>
 
-                <div class="choices">
+            <button class="choice">🌊 Đi Biển</button>
 
-                    <button class="choice">💖 Ôm Bé Bơ</button>
+            <button class="choice">🐳 Chở Đi Chơi</button>
 
-                    <button class="choice">🌸 Tặng Hoa</button>
+            <button class="choice">✨ Yêu Thêm 100%</button>
+            <button class="choice">☕ Uống Trà Sữa Cùng Bé Bơ</button>
 
-                    <button class="choice">🍰 Mua Bánh</button>
+            <button class="choice">🎬 Xem Phim Cùng Bé Bơ</button>
 
-                    <button class="choice">🌊 Đi Biển</button>
+            <button class="choice">🎁 Tặng Quà Bí Mật</button>
 
-                    <button class="choice">🐳 Chở Đi Chơi</button>
+            <button class="choice">🌙 Ngắm Trăng Cùng Nhau</button>
 
-                    <button class="choice">✨ Yêu Thêm 100%</button>
-                    <button class="choice">☕ Uống Trà Sữa Cùng Bé Bơ</button>
+            <button class="choice">🛍️ Dắt Bé Bơ Đi Shopping</button>
 
-                    <button class="choice">🎬 Xem Phim Cùng Bé Bơ</button>
+            <button class="choice">🐱 Vuốt Mèo Cùng Bé Bơ</button>
 
-                    <button class="choice">🎁 Tặng Quà Bí Mật</button>
+            <button class="choice">🎵 Hát Cho Bé Bơ Nghe</button>
 
-                    <button class="choice">🌙 Ngắm Trăng Cùng Nhau</button>
+            <button class="choice">🤗 Nắm Tay Bé Bơ</button>
 
-                    <button class="choice">🛍️ Dắt Bé Bơ Đi Shopping</button>
+            <button class="choice">🌈 Tạo Kỷ Niệm Mới</button>
 
-                    <button class="choice">🐱 Vuốt Mèo Cùng Bé Bơ</button>
+            <button class="choice">💍 Cưới Bé Bơ</button>
+          </div>
 
+          <button id="runBtn">❌ Không yêu Bé Bơ</button>
 
-                    <button class="choice">🎵 Hát Cho Bé Bơ Nghe</button>
-
-                    <button class="choice">🤗 Nắm Tay Bé Bơ</button>
-
-                    <button class="choice">🌈 Tạo Kỷ Niệm Mới</button>
-
-                    <button class="choice">💍 Cưới Bé Bơ</button>
-                </div>
-
-                <button id="runBtn">
-                    ❌ Không yêu Bé Bơ
-                </button>
-
-                <div id="result"></div>
-            </div>
-
-            <div class="login-box">
-                <strong>Sign in:</strong> Anh Cún 🐶
-            </div>
-
+          <div id="result"></div>
         </div>
 
-        <!-- RIGHT -->
+        <div class="login-box"><strong>Sign in:</strong> Anh Cún 🐶</div>
+      </div>
 
-        <div class="right">
+      <!-- RIGHT -->
 
-            <div class="content">
+      <div class="right">
+        <div class="content">
+          <div class="heart">💙</div>
 
-                <div class="heart">
-                    💙
-                </div>
+          <h2>Princess Bé Bơ</h2>
 
-                <h2>
-                    Princess Bé Bơ
-                </h2>
+          <p>
+            Người đáng yêu nhất hệ mặt trời ☀️
+            <br />
+            còn dễ thương hơn cả trà sữa, mèo con
+            <br />
+            và những ngày được ngủ nướng 🌊
+          </p>
 
-                <p>
-                    Người đáng yêu nhất hệ mặt trời ☀️
-                    <br>
-                    còn dễ thương hơn cả trà sữa, mèo con
-                    <br>
-                    và những ngày được ngủ nướng 🌊
-                </p>
-
-                <div class="emoji">
-                    <span>☁️</span>
-                    <span>🐳</span>
-                    <span>✨</span>
-                </div>
-
-            </div>
-
+          <div class="emoji">
+            <span>☁️</span>
+            <span>🐳</span>
+            <span>✨</span>
+          </div>
         </div>
-
+      </div>
     </div>
     <div class="popup" id="popup">
+      <h2>💙 Bé Bơ</h2>
 
-        <h2>💙 Bé Bơ</h2>
+      <p id="popupText"></p>
 
-        <p id="popupText"></p>
-
-        <button onclick="closePopup()">
-            Dễ thương quá 🥰
-        </button>
-
+      <button onclick="closePopup()">Dễ thương quá 🥰</button>
     </div>
-</body>
-<script>
-
+  </body>
+  <script>
     const messages = {
+      "💖 Ôm Bé Bơ": "Anh Cún đã ôm Bé Bơ thật chặt 🥰",
 
-        "💖 Ôm Bé Bơ":
-            "Anh Cún đã ôm Bé Bơ thật chặt 🥰",
+      "🌸 Tặng Hoa": "Bé Bơ nhận được một bó hoa siêu đẹp 🌷",
 
-        "🌸 Tặng Hoa":
-            "Bé Bơ nhận được một bó hoa siêu đẹp 🌷",
+      "🍰 Mua Bánh": "Bé Bơ được tặng chiếc bánh ngon nhất 🍰",
 
-        "🍰 Mua Bánh":
-            "Bé Bơ được tặng chiếc bánh ngon nhất 🍰",
+      "🌊 Đi Biển": "Hai đứa cùng đi biển ngắm hoàng hôn 🌅",
 
-        "🌊 Đi Biển":
-            "Hai đứa cùng đi biển ngắm hoàng hôn 🌅",
+      "🐳 Chở Đi Chơi": "Bé Bơ được đưa đi chơi khắp thế giới 🌎",
 
-        "🐳 Chở Đi Chơi":
-            "Bé Bơ được đưa đi chơi khắp thế giới 🌎",
+      "✨ Yêu Thêm 100%": "Level tình yêu tăng lên 999999 ❤️",
+      "☕ Uống Trà Sữa Cùng Bé Bơ":
+        "Hai đứa vừa uống trà sữa vừa kể chuyện cả ngày 🧋",
 
-        "✨ Yêu Thêm 100%":
-            "Level tình yêu tăng lên 999999 ❤️",
-        "☕ Uống Trà Sữa Cùng Bé Bơ": "Hai đứa vừa uống trà sữa vừa kể chuyện cả ngày 🧋",
+      "🎬 Xem Phim Cùng Bé Bơ": "Bộ phim hay nhất là được ngồi cạnh Bé Bơ 🎥",
 
-        "🎬 Xem Phim Cùng Bé Bơ":
-            "Bộ phim hay nhất là được ngồi cạnh Bé Bơ 🎥",
+      "🍜 Dẫn Bé Bơ Đi Ăn": "Bé Bơ được ăn món ngon nhất hôm nay 😋",
 
-        "🍜 Dẫn Bé Bơ Đi Ăn":
-            "Bé Bơ được ăn món ngon nhất hôm nay 😋",
+      "📸 Chụp 1000 Tấm Hình": "Điện thoại đầy ắp ảnh Bé Bơ rồi 📸",
 
-        "📸 Chụp 1000 Tấm Hình":
-            "Điện thoại đầy ắp ảnh Bé Bơ rồi 📸",
+      "🎁 Tặng Quà Bí Mật": "Bé Bơ mở quà và cười siêu đáng yêu 🎁",
 
-        "🎁 Tặng Quà Bí Mật":
-            "Bé Bơ mở quà và cười siêu đáng yêu 🎁",
+      "🌙 Ngắm Trăng Cùng Nhau": "Trăng đẹp nhưng Bé Bơ còn đẹp hơn 🌙",
 
-        "🌙 Ngắm Trăng Cùng Nhau":
-            "Trăng đẹp nhưng Bé Bơ còn đẹp hơn 🌙",
+      "🛍️ Dắt Bé Bơ Đi Shopping": "Nhiệm vụ hôm nay: chiều Bé Bơ hết mức 🛍️",
 
-        "🛍️ Dắt Bé Bơ Đi Shopping":
-            "Nhiệm vụ hôm nay: chiều Bé Bơ hết mức 🛍️",
+      "🐱 Vuốt Mèo Cùng Bé Bơ": "Mèo đáng yêu, nhưng Bé Bơ đáng yêu hơn 🐱",
 
-        "🐱 Vuốt Mèo Cùng Bé Bơ":
-            "Mèo đáng yêu, nhưng Bé Bơ đáng yêu hơn 🐱",
+      "🚗 Đi Phượt Một Chút":
+        "Hai đứa rong ruổi đến nơi có thật nhiều kỷ niệm 🚗",
 
-        "🚗 Đi Phượt Một Chút":
-            "Hai đứa rong ruổi đến nơi có thật nhiều kỷ niệm 🚗",
+      "🎡 Đi Công Viên Chơi": "Tiếng cười của Bé Bơ vang khắp công viên 🎡",
 
-        "🎡 Đi Công Viên Chơi":
-            "Tiếng cười của Bé Bơ vang khắp công viên 🎡",
+      "🎵 Hát Cho Bé Bơ Nghe": "Dù hát dở nhưng hát bằng cả trái tim 🎶",
 
-        "🎵 Hát Cho Bé Bơ Nghe":
-            "Dù hát dở nhưng hát bằng cả trái tim 🎶",
+      "💌 Viết Thư Tình":
+        "Bức thư dài 1000 chữ nhưng tóm gọn là: Anh thương Bé Bơ 💌",
 
-        "💌 Viết Thư Tình":
-            "Bức thư dài 1000 chữ nhưng tóm gọn là: Anh thương Bé Bơ 💌",
+      "🤗 Nắm Tay Bé Bơ": "Nắm tay một chút mà vui cả ngày 🤗",
 
-        "🤗 Nắm Tay Bé Bơ":
-            "Nắm tay một chút mà vui cả ngày 🤗",
+      "🍓 Mua Đồ Ăn Vặt": "Bé Bơ được phát đồ ăn vặt không giới hạn 🍓",
 
-        "🍓 Mua Đồ Ăn Vặt":
-            "Bé Bơ được phát đồ ăn vặt không giới hạn 🍓",
+      "🌈 Tạo Kỷ Niệm Mới": "Lại thêm một ngày đáng nhớ cùng Bé Bơ ✨",
 
-        "🌈 Tạo Kỷ Niệm Mới":
-            "Lại thêm một ngày đáng nhớ cùng Bé Bơ ✨",
+      "💍 Cưới Bé Bơ": "Loading hạnh phúc trọn đời... 💍💙",
 
-        "💍 Cưới Bé Bơ":
-            "Loading hạnh phúc trọn đời... 💍💙",
+      "☕ Uống Trà Sữa Cùng Bé Bơ":
+        "Hai đứa vừa uống trà sữa vừa kể chuyện cả ngày 🧋",
 
-        "☕ Uống Trà Sữa Cùng Bé Bơ":
-            "Hai đứa vừa uống trà sữa vừa kể chuyện cả ngày 🧋",
+      "🎬 Xem Phim Cùng Bé Bơ": "Bộ phim hay nhất là được ngồi cạnh Bé Bơ 🎥",
 
-        "🎬 Xem Phim Cùng Bé Bơ":
-            "Bộ phim hay nhất là được ngồi cạnh Bé Bơ 🎥",
+      "🍜 Dẫn Bé Bơ Đi Ăn": "Bé Bơ được ăn món ngon nhất hôm nay 😋",
 
-        "🍜 Dẫn Bé Bơ Đi Ăn":
-            "Bé Bơ được ăn món ngon nhất hôm nay 😋",
+      "📸 Chụp 1000 Tấm Hình": "Điện thoại đầy ắp ảnh Bé Bơ rồi 📸",
 
-        "📸 Chụp 1000 Tấm Hình":
-            "Điện thoại đầy ắp ảnh Bé Bơ rồi 📸",
+      "🎁 Tặng Quà Bí Mật": "Bé Bơ mở quà và cười siêu đáng yêu 🎁",
 
-        "🎁 Tặng Quà Bí Mật":
-            "Bé Bơ mở quà và cười siêu đáng yêu 🎁",
+      "🌙 Ngắm Trăng Cùng Nhau": "Trăng đẹp nhưng Bé Bơ còn đẹp hơn 🌙",
 
-        "🌙 Ngắm Trăng Cùng Nhau":
-            "Trăng đẹp nhưng Bé Bơ còn đẹp hơn 🌙",
+      "🛍️ Dắt Bé Bơ Đi Shopping": "Nhiệm vụ hôm nay: chiều Bé Bơ hết mức 🛍️",
 
-        "🛍️ Dắt Bé Bơ Đi Shopping":
-            "Nhiệm vụ hôm nay: chiều Bé Bơ hết mức 🛍️",
+      "🐱 Vuốt Mèo Cùng Bé Bơ": "Mèo đáng yêu, nhưng Bé Bơ đáng yêu hơn 🐱",
 
-        "🐱 Vuốt Mèo Cùng Bé Bơ":
-            "Mèo đáng yêu, nhưng Bé Bơ đáng yêu hơn 🐱",
+      "🚗 Đi Phượt Một Chút":
+        "Hai đứa rong ruổi đến nơi có thật nhiều kỷ niệm 🚗",
 
-        "🚗 Đi Phượt Một Chút":
-            "Hai đứa rong ruổi đến nơi có thật nhiều kỷ niệm 🚗",
+      "🎡 Đi Công Viên Chơi": "Tiếng cười của Bé Bơ vang khắp công viên 🎡",
 
-        "🎡 Đi Công Viên Chơi":
-            "Tiếng cười của Bé Bơ vang khắp công viên 🎡",
+      "🎵 Hát Cho Bé Bơ Nghe": "Dù hát dở nhưng hát bằng cả trái tim 🎶",
 
-        "🎵 Hát Cho Bé Bơ Nghe":
-            "Dù hát dở nhưng hát bằng cả trái tim 🎶",
+      "💌 Viết Thư Tình":
+        "Bức thư dài 1000 chữ nhưng tóm gọn là: Anh thương Bé Bơ 💌",
 
-        "💌 Viết Thư Tình":
-            "Bức thư dài 1000 chữ nhưng tóm gọn là: Anh thương Bé Bơ 💌",
+      "🤗 Nắm Tay Bé Bơ": "Nắm tay một chút mà vui cả ngày 🤗",
 
-        "🤗 Nắm Tay Bé Bơ":
-            "Nắm tay một chút mà vui cả ngày 🤗",
+      "🍓 Mua Đồ Ăn Vặt": "Bé Bơ được phát đồ ăn vặt không giới hạn 🍓",
 
-        "🍓 Mua Đồ Ăn Vặt":
-            "Bé Bơ được phát đồ ăn vặt không giới hạn 🍓",
+      "🌈 Tạo Kỷ Niệm Mới": "Lại thêm một ngày đáng nhớ cùng Bé Bơ ✨",
 
-        "🌈 Tạo Kỷ Niệm Mới":
-            "Lại thêm một ngày đáng nhớ cùng Bé Bơ ✨",
-
-        "💍 Cưới Bé Bơ":
-            "Loading hạnh phúc trọn đời... 💍💙"
+      "💍 Cưới Bé Bơ": "Loading hạnh phúc trọn đời... 💍💙",
     };
 
     const result = document.getElementById("result");
     const popup = document.getElementById("popup");
     const popupText = document.getElementById("popupText");
 
-    document.querySelectorAll(".choice")
-        .forEach(btn => {
+    document.querySelectorAll(".choice").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const msg = messages[btn.innerText];
 
-            btn.addEventListener("click", () => {
+        result.innerHTML = msg;
+        result.classList.add("show");
 
-                const msg = messages[btn.innerText];
+        popupText.innerHTML = msg;
+        popup.classList.add("show");
 
-                result.innerHTML = msg;
-                result.classList.add("show");
-
-                popupText.innerHTML = msg;
-                popup.classList.add("show");
-
-                createHeart();
-
-            });
-
-        });
+        createHeart();
+      });
+    });
 
     function closePopup() {
-        popup.classList.remove("show");
+      popup.classList.remove("show");
     }
 
     function createHeart() {
+      for (let i = 0; i < 8; i++) {
+        const heart = document.createElement("div");
 
-        for (let i = 0; i < 8; i++) {
+        heart.className = "heart-float";
+        heart.innerHTML = "💙";
 
-            const heart = document.createElement("div");
+        heart.style.left = Math.random() * window.innerWidth + "px";
 
-            heart.className = "heart-float";
-            heart.innerHTML = "💙";
+        heart.style.top = window.innerHeight - 100 + "px";
 
-            heart.style.left =
-                Math.random() * window.innerWidth + "px";
+        document.body.appendChild(heart);
 
-            heart.style.top =
-                window.innerHeight - 100 + "px";
-
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 2000);
-        }
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
     }
 
-    const runBtn =
-        document.getElementById("runBtn");
+    const runBtn = document.getElementById("runBtn");
 
     runBtn.addEventListener("mouseover", () => {
+      runBtn.style.position = "fixed";
 
-        runBtn.style.position = "fixed";
+      runBtn.style.left = Math.random() * (window.innerWidth - 200) + "px";
 
-        runBtn.style.left =
-            Math.random() * (window.innerWidth - 200) + "px";
-
-        runBtn.style.top =
-            Math.random() * (window.innerHeight - 100) + "px";
+      runBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
     });
-
-</script>
-
+  </script>
 </html>
