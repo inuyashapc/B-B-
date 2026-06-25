@@ -17,21 +17,82 @@
     />
     <style>
       * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
         font-family: "Poppins", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
+      .container,
+      .choice,
+      button {
+        will-change: transform;
+      }
+
+      .right,
+      .left {
+        transform: translateZ(0); /* GPU force */
+      }
       body {
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #d7f3ff, #c2ebff, #9fdcff);
+
         overflow-x: hidden;
         position: relative;
         padding: 20px;
+
+        background: radial-gradient(
+          circle at top,
+          #17366f 0%,
+          #0d1f47 35%,
+          #050b18 100%
+        );
+
+        background-attachment: fixed;
+      }
+
+      /* canvas sao */
+      #stars {
+        position: fixed;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        z-index: -3;
+
+        pointer-events: none;
+      }
+
+      /* hiệu ứng nebula */
+      body::before {
+        content: "";
+
+        position: fixed;
+
+        inset: -20%;
+
+        background:
+          radial-gradient(circle, rgba(59, 130, 246, 0.35), transparent 50%),
+          radial-gradient(circle, rgba(125, 211, 252, 0.18), transparent 40%);
+        opacity: 0.7;
+        filter: blur(90px); /* giảm từ 120 → nhẹ hơn */
+
+        animation: nebula 25s linear infinite alternate;
+
+        z-index: -2;
+      }
+
+      @keyframes nebula {
+        from {
+          transform: translate(-5%, 0) rotate(0deg);
+        }
+
+        to {
+          transform: translate(5%, -5%) rotate(8deg);
+        }
       }
 
       /* background circles */
@@ -68,8 +129,6 @@
         right: -150px;
       }
 
-      /* container */
-
       .container {
         width: 90%;
         max-width: 1150px;
@@ -78,7 +137,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
 
-        background: rgba(255, 255, 255, 0.88);
+        /* background: rgba(255, 255, 255, 0.88); */
 
         border: 1px solid rgba(255, 255, 255, 0.4);
 
@@ -87,8 +146,6 @@
         overflow: hidden;
 
         position: relative;
-
-        z-index: 10;
 
         box-shadow:
           0 0 40px rgba(59, 130, 246, 0.18),
@@ -130,7 +187,7 @@
       h1 {
         font-size: clamp(32px, 6vw, 68px);
         line-height: 1.1;
-        color: #1e293b;
+        color: #22c55e;
         font-weight: 900;
       }
 
@@ -204,7 +261,6 @@
       /* right */
 
       .right {
-        background: linear-gradient(135deg, #38bdf8, #0ea5e9, #2563eb);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -221,17 +277,6 @@
         background: rgba(255, 255, 255, 0.12);
         top: -220px;
         right: -180px;
-      }
-
-      .right::after {
-        content: "";
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.08);
-        bottom: -120px;
-        left: -100px;
       }
 
       .content {
@@ -667,6 +712,7 @@
   </head>
 
   <body>
+    <canvas id="stars"></canvas>
     <div class="sparkles"></div>
     <div class="blur1"></div>
     <div class="blur2"></div>
@@ -871,45 +917,47 @@
     const popup = document.getElementById("popup");
     const popupText = document.getElementById("popupText");
 
-    document.querySelectorAll(".choice").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const msg = messages[btn.innerText];
+    document.querySelector(".choices").addEventListener("click", (e) => {
+      const btn = e.target.closest(".choice");
+      if (!btn) return;
 
-        result.innerHTML = msg;
-        result.classList.add("show");
+      const msg = messages[btn.innerText];
+      if (!msg) return;
 
-        popupText.innerHTML = msg;
-        popup.classList.add("show");
+      result.innerHTML = msg;
+      result.classList.add("show");
 
-        createHeart();
-      });
+      popupText.innerHTML = msg;
+      popup.classList.add("show");
+
+      createHeart();
     });
-
     function closePopup() {
       popup.classList.remove("show");
     }
 
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+      document.body.style.setProperty("--motion", "reduce");
+    }
 
     function createHeart() {
-      const total = isMobile ? 3 : 6;
+      const total = window.innerWidth < 768 ? 2 : 3;
 
       for (let i = 0; i < total; i++) {
         const heart = document.createElement("div");
-
         heart.className = "heart-float";
+        heart.textContent = "💙";
 
-        heart.innerHTML = "💙";
-
-        heart.style.left = Math.random() * window.innerWidth + "px";
-
+        heart.style.left = Math.random() * 100 + "vw";
         heart.style.bottom = "0px";
 
         document.body.appendChild(heart);
 
-        setTimeout(() => {
-          heart.remove();
-        }, 1200);
+        requestAnimationFrame(() => {
+          setTimeout(() => heart.remove(), 1200);
+        });
       }
     }
 
@@ -923,5 +971,58 @@
         )`;
       });
     }
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    let stars = [];
+    let w, h;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+
+      createStars();
+    }
+
+    function createStars() {
+      const amount = Math.min(200, Math.floor(w / 6)); // giảm mạnh để mượt
+
+      stars = new Array(amount).fill().map(() => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        size: Math.random() * 1.6, // nhỏ hơn = mượt hơn
+        speed: 0.1 + Math.random() * 0.25,
+        opacity: Math.random(),
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+
+        s.y += s.speed;
+        if (s.y > h) {
+          s.y = 0;
+          s.x = Math.random() * w;
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${s.opacity})`;
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+
+    window.addEventListener("resize", () => {
+      clearTimeout(window.__r);
+      window.__r = setTimeout(resize, 150);
+    });
   </script>
 </html>
