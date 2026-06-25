@@ -40,8 +40,16 @@
       .blur2 {
         position: absolute;
         border-radius: 50%;
-        filter: blur(120px);
-        opacity: 0.5;
+        filter: blur(60px);
+        opacity: 0.3;
+        will-change: transform;
+      }
+
+      @media (max-width: 768px) {
+        .blur1,
+        .blur2 {
+          display: none;
+        }
       }
 
       .blur1 {
@@ -66,18 +74,39 @@
         width: 90%;
         max-width: 1150px;
         min-height: 650px;
+
         display: grid;
         grid-template-columns: 1fr 1fr;
-        background: rgba(255, 255, 255, 0.35);
+
+        background: rgba(255, 255, 255, 0.88);
+
         border: 1px solid rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(28px);
+
         border-radius: 35px;
+
         overflow: hidden;
+
         position: relative;
+
         z-index: 10;
+
         box-shadow:
-          0 0 80px rgba(59, 130, 246, 0.25),
-          0 30px 80px rgba(0, 0, 0, 0.15);
+          0 0 40px rgba(59, 130, 246, 0.18),
+          0 15px 40px rgba(0, 0, 0, 0.08);
+
+        will-change: transform;
+      }
+
+      @supports (backdrop-filter: blur(18px)) {
+        .container {
+          backdrop-filter: blur(18px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          backdrop-filter: none;
+        }
       }
 
       /* left */
@@ -495,10 +524,14 @@
 
       .heart-float {
         position: fixed;
-        font-size: 30px;
+
+        font-size: 22px;
+
         pointer-events: none;
-        animation: heartUp 2s linear forwards;
-        z-index: 9999;
+
+        animation: heartUp 1.2s linear forwards;
+
+        will-change: transform, opacity;
       }
 
       @keyframes heartUp {
@@ -553,34 +586,46 @@
         z-index: 1;
       }
 
-      .sparkles::before,
-      .sparkles::after {
+      .sparkles {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .sparkles::before {
         content: "";
+
         position: absolute;
-        width: 200%;
-        height: 200%;
 
-        background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+        inset: 0;
 
-        background-size: 50px 50px;
+        background-image: radial-gradient(circle, #fff 1px, transparent 1px);
 
-        opacity: 0.35;
+        background-size: 80px 80px;
 
-        animation: sparkleMove 25s linear infinite;
+        opacity: 0.12;
+
+        animation: sparkleMove 60s linear infinite;
       }
 
       .sparkles::after {
-        animation-duration: 40s;
-        opacity: 0.15;
+        display: none;
       }
 
       @keyframes sparkleMove {
         from {
-          transform: translateY(0) rotate(0deg);
+          transform: translateY(0);
         }
 
         to {
-          transform: translateY(-200px) rotate(8deg);
+          transform: translateY(-80px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sparkles {
+          display: none;
         }
       }
       .choice {
@@ -611,6 +656,12 @@
 
       .choice:hover::before {
         left: 130%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
       }
     </style>
   </head>
@@ -838,33 +889,39 @@
       popup.classList.remove("show");
     }
 
+    const isMobile = window.innerWidth <= 768;
+
     function createHeart() {
-      for (let i = 0; i < 8; i++) {
+      const total = isMobile ? 3 : 6;
+
+      for (let i = 0; i < total; i++) {
         const heart = document.createElement("div");
 
         heart.className = "heart-float";
+
         heart.innerHTML = "💙";
 
         heart.style.left = Math.random() * window.innerWidth + "px";
 
-        heart.style.top = window.innerHeight - 100 + "px";
+        heart.style.bottom = "0px";
 
         document.body.appendChild(heart);
 
         setTimeout(() => {
           heart.remove();
-        }, 2000);
+        }, 1200);
       }
     }
 
     const runBtn = document.getElementById("runBtn");
 
-    runBtn.addEventListener("mouseover", () => {
-      runBtn.style.position = "fixed";
-
-      runBtn.style.left = Math.random() * (window.innerWidth - 200) + "px";
-
-      runBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
-    });
+    if (window.innerWidth > 768) {
+      runBtn.addEventListener("mouseover", () => {
+        runBtn.style.transform = `translate(
+          ${Math.random() * 120 - 60}px,
+          ${Math.random() * 60 - 30}px
+        )`;
+      });
+    }
   </script>
 </html>
