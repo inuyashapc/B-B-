@@ -34,6 +34,7 @@
       }
       body {
         min-height: 100vh;
+        min-height: 100dvh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -50,19 +51,17 @@
         );
 
         background-attachment: fixed;
+        position: relative;
+        z-index: 1;
       }
 
       /* canvas sao */
       #stars {
         position: fixed;
-
         inset: 0;
-
         width: 100%;
         height: 100%;
-
-        z-index: -3;
-
+        z-index: 0;
         pointer-events: none;
       }
 
@@ -967,8 +966,18 @@
     let w, h;
 
     function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+      const dpr = window.devicePixelRatio || 1;
+
+      w = window.innerWidth;
+      h = window.innerHeight;
+
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       createStars();
     }
@@ -1006,8 +1015,10 @@
       requestAnimationFrame(draw);
     }
 
-    resize();
-    draw();
+    window.addEventListener("load", () => {
+      resize();
+      draw();
+    });
 
     window.addEventListener("resize", () => {
       clearTimeout(window.__r);
